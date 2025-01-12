@@ -1,7 +1,6 @@
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template, redirect, url_for
 import pandas as pd
 import pickle
-from sklearn.preprocessing import RobustScaler
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -11,7 +10,7 @@ model_filename = 'model/best_model.pkl'
 with open(model_filename, 'rb') as file:
     model = pickle.load(file)
 
-# Load the scaler (make sure to fit it on your training data)
+# Load the scaler
 scaler_filename = 'model/robust_scaler.pkl'
 with open(scaler_filename, 'rb') as file:
     scaler = pickle.load(file)
@@ -39,15 +38,17 @@ def predict():
         # Convert to DataFrame
         input_data = pd.DataFrame(data, index=[0])
         
-        # Scale features
+        # # Scale features
         input_scaled = scaler.transform(input_data)
 
         # Make prediction using the loaded model
         prediction = model.predict(input_scaled)
         
-        # Return prediction result to the template
+        # Determine result
         result = 'Potable' if prediction[0] == 1 else 'Not Potable'
-        return render_template('index.html', result=result)
+        
+        # Redirect to result page with the result and input data
+        return render_template('result.html', result=result, input_data=data)
     
     except Exception as e:
         return render_template('index.html', error=str(e))

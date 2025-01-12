@@ -1,62 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Water Potability Prediction</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
+
 <body class="bg-gray-100">
     <div class="container mx-auto p-6">
         <h1 class="text-3xl font-bold mb-4 text-center">Water Potability Prediction</h1>
-        
+
         <form action="/predict" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="ph">pH</label>
-                <input type="text" name="ph" id="ph" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <input type="text" name="ph" id="ph" required
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="Hardness">Hardness</label>
-                <input type="text" name="Hardness" id="Hardness" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <input type="text" name="Hardness" id="Hardness" required
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="Solids">Solids</label>
-                <input type="text" name="Solids" id="Solids" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <input type="text" name="Solids" id="Solids" required
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="Chloramines">Chloramines</label>
-                <input type="text" name="Chloramines" id="Chloramines" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <input type="text" name="Chloramines" id="Chloramines" required
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="Sulfate">Sulfate</label>
-                <input type="text" name="Sulfate" id="Sulfate" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <input type="text" name="Sulfate" id="Sulfate" required
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="Conductivity">Conductivity</label>
-                <input type="text" name="Conductivity" id="Conductivity" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <input type="text" name="Conductivity" id="Conductivity" required
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="Organic_carbon">Organic Carbon</label>
-                <input type="text" name="Organic_carbon" id="Organic_carbon" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <input type="text" name="Organic_carbon" id="Organic_carbon" required
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="Trihalomethanes">Trihalomethanes</label>
-                <input type="text" name="Trihalomethanes" id="Trihalomethanes" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <input type="text" name="Trihalomethanes" id="Trihalomethanes" required
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="Turbidity">Turbidity</label>
-                <input type="text" name="Turbidity" id="Turbidity" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <input type="text" name="Turbidity" id="Turbidity" required
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
 
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Predict</button>
+            <button type="submit"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Predict</button>
         </form>
 
         {% if result %}
@@ -64,7 +76,20 @@
             <h2 class='font-bold'>Prediction Result:</h2>
             <p>The water is: {{ result }}</p>
         </div>
-        {% elif error %}
+        {% endif %}
+
+        {% if request.form %}
+        <div class='mt-6 p-4 bg-blue-200 rounded'>
+            <h2 class='font-bold'>Input Data:</h2>
+            <ul>
+                {% for key, value in request.form.items() %}
+                <li>{{ key }}: {{ value }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% if error %}
         <div class='mt-6 p-4 bg-red-200 rounded'>
             <h2 class='font-bold'>Error:</h2>
             <p>{{ error }}</p>
@@ -72,4 +97,5 @@
         {% endif %}
     </div>
 </body>
+
 </html>
