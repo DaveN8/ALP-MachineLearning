@@ -3,29 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prediction Result</title>
+    <title>Prediction Result - Water Potability</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100">
-    <div class="container mx-auto p-6">
-        <h1 class="text-3xl font-bold mb-4 text-center">Prediction Result</h1>
-
-        <div class='mt-6 p-4 bg-green-200 rounded'>
-            <h2 class='font-bold'>Prediction Result:</h2>
-            <p>The water is: {{ result }}</p>
+<body class="bg-gradient-to-br from-blue-50 to-blue-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-3xl">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-blue-900 mb-2">Prediction Result</h1>
+            <p class="text-gray-600">Water Potability Analysis</p>
         </div>
 
-        <div class='mt-6 p-4 bg-blue-200 rounded'>
-            <h2 class='font-bold'>Input Data:</h2>
-            <ul>
-                {% for key, value in input_data.items() %}
-                    <li>{{ key }}: {{ value }}</li>
-                {% endfor %}
-            </ul>
+        <!-- Result Card -->
+        <div class="bg-white rounded-lg shadow-xl p-8 mb-8">
+            <!-- Prediction Result -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Analysis Outcome</h2>
+                <div class="bg-green-50 border-l-4 border-green-500 p-6 rounded">
+                    <p class="text-green-700 text-lg font-medium">The water is: {{ result }}</p>
+                </div>
+            </div>
+
+            <!-- Input Parameters -->
+            <div class="mt-8">
+                <h3 class="text-xl font-semibold text-gray-700 mb-4">Analyzed Parameters</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {% for key, value in input_data.items() %}
+                    <div class="flex justify-between items-center py-3 px-4 bg-gray-50 rounded">
+                        <span class="text-gray-600 font-medium">{{ key }}</span>
+                        <span class="font-semibold text-gray-800">{{ value }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
 
-        <div class="mt-6 text-center">
-            <a href="/" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Refresh</a>
+        <!-- Navigation Buttons -->
+        <div class="flex justify-center space-x-4">
+            <a href="/" 
+               class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition duration-200 transform hover:-translate-y-1">
+                New Prediction
+            </a>
+            {% if error %}
+            <div class="mt-8 bg-red-50 border-l-4 border-red-500 p-4 rounded-lg shadow-md">
+                <h2 class="text-red-800 font-semibold mb-2">Error</h2>
+                <p class="text-red-600">{{ error }}</p>
+            </div>
+            {% endif %}
         </div>
     </div>
 </body>
