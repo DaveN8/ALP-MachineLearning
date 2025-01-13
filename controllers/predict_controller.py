@@ -1,7 +1,6 @@
 from flask import request, jsonify, render_template
 import pandas as pd
 import pickle
-from sklearn.preprocessing import RobustScaler
 
 # Load the trained model and scaler
 model_filename = 'model/best_model.pkl'
